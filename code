@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+import java.io.*;
+
+class FileF{
+
+    public static void main (String[] args) {  
+      
+        int x = 0; 
+        //String [] anskey;    
+        File f = new File("quiz responses.csv"); 
+        try{
+            Scanner input = new Scanner(f);
+            
+            String [] key = null;
+            input.nextLine();
+            
+            while(input.hasNext()){
+                String str = input.nextLine();
+                String[] value = str.split(",");
+                
+                if (value[0].equals("Answer Key")) {
+                    //anskey = str.split(",");
+                    key = value;
+                }
+
+                //...
+                int grade = 0;
+                for(int i = 1; i < value.length; i++){
+                    if (value[i].equals(key[i])){
+                        grade = grade + 1;
+                        
+                        
+                    }
+                }
+                
+                //return str.substring(0,1) + "+" + total + "/8" ; 
+
+                System.out.println(value[0]+";");
+                System.out.println(grade+"/8");
+              
+            }   
+
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+
+    }
+}
